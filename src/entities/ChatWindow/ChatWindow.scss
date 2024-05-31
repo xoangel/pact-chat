@@ -1,0 +1,21 @@
+@import "./../../assets/css/global";
+
+.chat-window{
+    position: relative;
+    background: $blue;
+    height: 100vh;
+    flex-grow: 1;
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.chat-window{
+    .chat-window__message-list{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        overflow-y: auto;
+    }
+}

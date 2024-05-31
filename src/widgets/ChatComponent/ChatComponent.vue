@@ -31,9 +31,9 @@ import UnreadMessages from './UI/UnreadMessages.vue';
     const photo = chatWith.photo;
     const verified = chatWith.verified;
     
-    let lastMessage = chatStore.getLastMessage(props.chat.chat.id);
-    let lastMessageTime = ref(lastMessage?.time);
-    let lastMessageText = ref(lastMessage?.text);
+    let lastMessage = computed(()=>chatStore.getLastMessage(props.chat.chat.id));
+    let lastMessageTime = ref(lastMessage.value?.time);
+    let lastMessageText = ref(lastMessage.value?.text);
 
     const lastMessageTimeString = computed(()=>{
         const now = new Date();
@@ -62,7 +62,7 @@ import UnreadMessages from './UI/UnreadMessages.vue';
                 <span class="last-message-time secondary">{{  lastMessageTimeString }}</span>
             </div>
             <div class="chat-component__last-message">
-                <p class="chat-component__last-message__text secondary">{{ !lastMessage?.incoming ? "Вы: " : "" }} {{ lastMessageText }} </p>
+                <p class="chat-component__last-message__text secondary">{{ lastMessage && !lastMessage?.incoming ? "Вы: " : "" }} {{ lastMessageText }} </p>
                 <UnreadMessages v-if="lastMessage?.incoming" :count="2"/>
             </div>
 

@@ -1,0 +1,18 @@
+.chat-search-bar{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.chat-search-bar{
+    &__collapse{
+        padding: 12px 12px 12px 26px;
+    }
+
+    &__search{
+        width: 100%;
+        padding: 0 12px 0 0;
+    }
+}

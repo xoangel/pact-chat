@@ -14,7 +14,9 @@ export const useChatStore = defineStore('chats', {
     state: ()=> {
         const userStore = useUserStore();
         return{
-            selectedChat: null,
+            searchQuery: '',
+            searchMessages: '',
+            selectedChat: null as null | IChat,
             chatList: [
                 {
                     chat: new Chat(userStore.getUserById(2) as any) as IChat,
@@ -31,6 +33,11 @@ export const useChatStore = defineStore('chats', {
                         new Message("Сегодня отличный день, чтобы пойти подышать свежим воздухом", 1, true)
                     ] as IMessage[]
                 },
+                {
+                    chat: new Chat(userStore.getUserById(4) as any) as IChat,
+                    messageList: [
+                    ] as IMessage[]
+                },
             ] as chatWithMessages[]
         }
     },
@@ -40,6 +47,30 @@ export const useChatStore = defineStore('chats', {
                 const chat = state.chatList.find((chat) => chat.chat.id === id);
                 return chat?.messageList.slice(-1)[0];
             }
+        },
+        getChatById: (state) => {
+            return (id: number): chatWithMessages | undefined => state.chatList.find((chat: chatWithMessages)=>chat.chat.id === id);
+        },
+        filteredList(state) {
+            if (!state.searchQuery) {
+              return state.chatList;
+            }
+            return state.chatList.filter(item =>
+              item.chat.chat_with.fullName().toLowerCase().includes(state.searchQuery.toLowerCase())
+            );
+        },
+        // filteredMessages(state) {
+        //     if (!state.searchMessages) {
+        //       return state.chatList;
+        //     }
+        //     return state.chatList.filter(item =>
+        //       item.chat.chat_with.fullName().toLowerCase().includes(state.searchQuery.toLowerCase())
+        //     );
+        // }
+    },
+    actions: {
+        setSearchQuery(query: string) {
+            this.searchQuery = query;
         }
     }
 

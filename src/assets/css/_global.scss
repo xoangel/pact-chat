@@ -28,3 +28,33 @@ div, p, button{
 .title{
     font-size: $titleFontSize;
 }
+
+*::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+  }
+  *::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #C7C7C7;
+  }
+  
+  *::-webkit-scrollbar-track:hover {
+    background-color: #C7C7C7;
+  }
+  
+  *::-webkit-scrollbar-track:active {
+    background-color: #C7C7C7;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #777777;
+  }
+  
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #777777;
+  }
+  
+  *::-webkit-scrollbar-thumb:active {
+    background-color: #777777;
+  }
