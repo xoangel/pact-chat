@@ -20,7 +20,7 @@ export default class Chat implements IChat{
         return this._id;
     }
 
-    get chatWith(): IUser {
+    get chat_with(): IUser {
         return this._chat_with;
     }
 

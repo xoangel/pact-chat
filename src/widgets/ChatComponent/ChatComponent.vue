@@ -1,30 +1,75 @@
 <script setup lang="ts">
-import IUser from "./../../helpers/types/typeUser";
-import AvatarImage from "../../UI/AvatarImage.vue";
-    
-    const props = defineProps({
-        chat: {type: Object, reqired: true}
-    });
+import { computed, ref } from 'vue';
+import { useChatStore } from '../../helpers/stores/useChatStore';
+import IChat from '../../helpers/types/typeChat';
+import IMessage from '../../helpers/types/typeMessage';
+import IUser from '../../helpers/types/typeUser';
+import AvatarImage from '../../UI/AvatarImage.vue';
+import ChatTitle from '../../UI/ChatTitle.vue';
+import UnreadMessages from './UI/UnreadMessages.vue';
 
-    const user: IUser = props.user;
+    const chatStore = useChatStore()
+    const props = defineProps<{
+        chat: {
+            chat: IChat,
+            messageList: IMessage[]
+        }
+    }>();
+
+    const days = [
+    'Вс',
+    'Пн',
+    'Вт',
+    'Ср',
+    'Чт',
+    'Пт',
+    'Сб'
+    ];
+
+    const chatWith: IUser = props.chat.chat.chat_with;
+    const name = chatWith.fullName();
+    const photo = chatWith.photo;
+    const verified = chatWith.verified;
     
-    const userAvatar = user?.photo;
-    const verified = user?.verified;
-    const userFullName = user?.fullName();
+    let lastMessage = chatStore.getLastMessage(props.chat.chat.id);
+    let lastMessageTime = ref(lastMessage?.time);
+    let lastMessageText = ref(lastMessage?.text);
+
+    const lastMessageTimeString = computed(()=>{
+        const now = new Date();
+        if(lastMessageTime.value){
+            return lastMessageTime.value.getDay() == now.getDay() &&
+            lastMessageTime.value.getMonth() == now.getMonth() &&
+            lastMessageTime.value.getMonth() == now.getMonth() ?
+            `${lastMessageTime.value?.getHours() < 10 ? '0'+lastMessageTime.value?.getHours(): lastMessageTime.value?.getHours()} : ${lastMessageTime.value?.getMinutes() < 10 ? '0'+lastMessageTime.value?.getMinutes(): lastMessageTime.value?.getMinutes()}` :
+            days[lastMessageTime.value.getDay()];
+        }
+    })
 
 </script>
 
 <template>
     <div class="chat-component">
-        <div class="avatar__container">
-            <AvatarImage :userAvatar="this.userAvatar" />
+        <div class="chat-component__avatar-container">
+            <AvatarImage :user-avatar="photo"/>
         </div>
         <div class="chat-component__content">
-            <div class="chat-component__title-container">
-                <h2 class="chat-component__title">{{ this.userFullName }}</h2>
-                <img v-if="this.verified" src="/chat/verified.svg" alt="">
+            <div class="chat-component__title">
+                <ChatTitle 
+                    :user-full-name="name" 
+                    :verified="verified"
+                />
+                <span class="last-message-time secondary">{{  lastMessageTimeString }}</span>
             </div>
-            <p class="chat-component__last-message">{{ this.lastMessage }}</p>
+            <div class="chat-component__last-message">
+                <p class="chat-component__last-message__text secondary">{{ !lastMessage?.incoming ? "Вы: " : "" }} {{ lastMessageText }} </p>
+                <UnreadMessages v-if="lastMessage?.incoming" :count="2"/>
+            </div>
+
         </div>
     </div>
 </template>
+
+<style scoped lang="scss">
+@import "./ChatComponent.scss";
+</style>

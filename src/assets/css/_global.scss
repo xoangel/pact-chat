@@ -1,0 +1,30 @@
+$blue: #8BABD8;
+$green: #78E378;
+$black: #011627;
+$grey: #707991;
+$primaryFontSize: 14px;
+$titleFontSize: 16px;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+p, h1, h2, h3, h4, h5, h6, div, span, button{
+    font-family: Inter;
+}
+
+div, p, button{
+    color: black;
+    font-size: $primaryFontSize;
+    font-weight: 400;
+}
+
+.secondary{
+    color: $grey;
+}
+
+.title{
+    font-size: $titleFontSize;
+}

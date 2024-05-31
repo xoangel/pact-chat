@@ -8,15 +8,16 @@ export default class User implements IUser {
     private _firstName: string;
     private _lastName: string;
     private _phone: string;
-    private _photo: string;
+    private _photo: string = "";
+    private _verified: boolean = false;
 
-    constructor(login: string, firstName: string, lastName: string, phone: string, photo: string = "/default_avatar.png") {
+    constructor(login: string, firstName: string, lastName: string, phone: string, photo?: string) {
         this._id = User.generateId();
         this._login = login;
         this._firstName = firstName;
         this._lastName = lastName;
         this._phone = phone;
-        this._photo = photo;
+        if(photo) this._photo = photo;
     }
 
     private static generateId(): number {
@@ -45,6 +46,10 @@ export default class User implements IUser {
 
     get photo(): string {
         return this._photo;
+    }
+
+    get verified(): boolean{
+        return this._verified;
     }
 
     set login(value: string) {
@@ -79,7 +84,12 @@ export default class User implements IUser {
         this._photo = photo;
     }
 
+    verfy(){
+        this._verified = true;
+    }
+
     toString(): string {
         return `User [ID: ${this._id}, Login: ${this._login}, Name: ${this.fullName()}, Phone: ${this._phone}, Photo: ${this._photo}]`;
     }
+
 }

@@ -1,11 +1,12 @@
 <script setup lang="ts">
-const props = defineProps({
+
+defineProps({
     userAvatar: String
 })
 </script>
 
 <template>
-    <div class="avatar__image" :style="`background-image: ${this.props.userAvatar}`"></div>
+    <div class="avatar__image" :style="`background-image: url(${userAvatar})`"></div>
 </template>
 
 <style scoped lang="scss">

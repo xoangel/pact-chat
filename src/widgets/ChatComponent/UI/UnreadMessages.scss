@@ -1,0 +1,13 @@
+@import "/src/assets/css/global";
+
+.unread-messages{
+    background-color: $green;
+    color: white;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    width: 18px;
+    line-height: 1;
+    display: flex;
+    place-content: center;
+    place-items: center;
+}
