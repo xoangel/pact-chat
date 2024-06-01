@@ -23,5 +23,5 @@ const updateSearchQuery = () => {
 
 <style scoped lang="scss">
     @import "./ChatSearchBar.scss";
-    @import "./../../assets/css/searchInput"
+    @import "./../../assets/css/searchInput";
 </style>

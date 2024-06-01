@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, Ref } from 'vue'
+import { computed } from 'vue'
 import { useChatStore } from '../../helpers/stores/useChatStore';
 import NoMessages from "./UI/NoMessages.vue";
 import Message from '../../UI/Message.vue';

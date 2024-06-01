@@ -3,14 +3,16 @@ import { computed, ref } from 'vue';
 import { useChatStore } from '../../helpers/stores/useChatStore';
 import AvatarImage from '../../UI/AvatarImage.vue';
 import ChatTitle from '../../UI/ChatTitle.vue';
+import DropdownModal from './../../features/DropdownModal/DropdownModal.vue'
 
 const chatStore = useChatStore();
 const selectedUser = computed(()=>chatStore.selectedChat);
 let searchField = ref(false);
 
-function noRelease(){
-    alert("В ближайшем обновлении мы это сделаем!")
-}
+const noRelease = ()=>alert("В ближайшем обновлении мы это сделаем!");
+const moreActionsDropdown = ref(null);
+
+const showMoreActions = () => {if(moreActionsDropdown.value) (moreActionsDropdown.value as any).showDropdown()}
 
 </script>
 
@@ -33,10 +35,22 @@ function noRelease(){
             </div>
         </div>
         <div class="chat-header__actions">
-            <div @click="searchField = !searchField" v-if="!searchField" class="chat-header__action-search"></div>
-            <input v-else class="search-input" v-model="query" type="text" placeholder="Поиск..." @input="updateSearchQuery">
-            <div @click="noRelease" class="chat-header__action-call"></div>
-            <div @click="noRelease" class="chat-header__action-more"></div>
+            <div @click="searchField = !searchField" v-if="!searchField" class="chat-header__action-search">
+                <div class="chat-header__action-search__icon action-icon"></div>
+            </div>
+            <!-- <input v-else class="search-input message-search" v-model="query" type="text" placeholder="Поиск..." @input="updateSearchQuery"> -->
+            <div @click="noRelease" class="chat-header__action-call">
+                <div class="chat-header__action-call__icon action-icon"></div>
+            </div>
+            <div @click="showMoreActions" class="chat-header__action-more">
+                <div class="chat-header__action-more__icon action-icon"></div>
+                <DropdownModal ref="moreActionsDropdown">
+                    <div class="verify-user__dropdown">
+                        <p>Верифицировать пользователя</p>
+                        <img src="./../../../public/user/verified.svg" alt="">
+                    </div>
+                </DropdownModal>
+            </div>
         </div>
     </div>
 </template>

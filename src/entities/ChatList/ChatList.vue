@@ -30,5 +30,5 @@ function selectChat(chat: MessageChat){
 </template>
 
 <style scoped lang="scss">
-@import "./ChatList.scss"
+@import "./ChatList.scss";
 </style>

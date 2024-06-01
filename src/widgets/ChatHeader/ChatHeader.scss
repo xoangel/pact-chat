@@ -33,24 +33,34 @@
         width: 24px;
         aspect-ratio: 1;
         cursor: pointer;
+        position: relative;
+    }
+    .action-icon{
+        width: 100%;
+        height: 100%;
         transform: scale(1);
         transition: transform .5s ease;
     }
 
-    &__actions>div:hover{
+    &__actions>div:hover>.action-icon{
         transform: scale(0.9);
         transition: transform .5s ease;
     }
 
-    &__action-search{
+    &__action-search__icon{
         background: center / cover no-repeat url(/chat/search.svg);
     }
 
-    &__action-call{
+    &__action-call__icon{
         background: center / cover no-repeat url(/chat/call.svg);
     }
 
-    &__action-more{
+    &__action-more__icon{
         background: center / cover no-repeat url(/chat/more.svg);
     }
+}
+
+.verify-user__dropdown{
+    display: flex;
+    gap: 16px;
 }
