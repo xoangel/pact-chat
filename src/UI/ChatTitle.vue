@@ -17,6 +17,6 @@ defineProps({
 <style scoped lang="scss">
     .chat-title-container{
         display: flex;
-        gap: 16px;
+        gap: 8px;
     }
 </style>

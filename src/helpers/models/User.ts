@@ -84,7 +84,7 @@ export default class User implements IUser {
         this._photo = photo;
     }
 
-    verfy(){
+    verify(): void {
         this._verified = true;
     }
 

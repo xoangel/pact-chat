@@ -4,6 +4,7 @@ import { useChatStore } from '../../helpers/stores/useChatStore';
 import AvatarImage from '../../UI/AvatarImage.vue';
 import ChatTitle from '../../UI/ChatTitle.vue';
 import DropdownModal from './../../features/DropdownModal/DropdownModal.vue'
+import VerificationFeature from '../../features/VerificationFeature/VerificationFeature.vue';
 
 const chatStore = useChatStore();
 const selectedUser = computed(()=>chatStore.selectedChat);
@@ -42,13 +43,10 @@ const showMoreActions = () => {if(moreActionsDropdown.value) (moreActionsDropdow
             <div @click="noRelease" class="chat-header__action-call">
                 <div class="chat-header__action-call__icon action-icon"></div>
             </div>
-            <div @click="showMoreActions" class="chat-header__action-more">
+            <div @click.stop="showMoreActions" class="chat-header__action-more">
                 <div class="chat-header__action-more__icon action-icon"></div>
                 <DropdownModal ref="moreActionsDropdown">
-                    <div class="verify-user__dropdown">
-                        <p>Верифицировать пользователя</p>
-                        <img src="./../../../public/user/verified.svg" alt="">
-                    </div>
+                    <VerificationFeature class="dropdown-modal__element"/>
                 </DropdownModal>
             </div>
         </div>

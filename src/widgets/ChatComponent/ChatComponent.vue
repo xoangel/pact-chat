@@ -29,7 +29,7 @@ import UnreadMessages from './UI/UnreadMessages.vue';
     const chatWith: IUser = props.chat.chat.chat_with;
     const name = chatWith.fullName();
     const photo = chatWith.photo;
-    const verified = chatWith.verified;
+    const verified = computed(()=>chatWith.verified);
     
     let lastMessage = computed(()=>chatStore.getLastMessage(props.chat.chat.id));
     let lastMessageTime = ref(lastMessage.value?.time);

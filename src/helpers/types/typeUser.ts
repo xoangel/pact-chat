@@ -10,4 +10,5 @@ export default interface IUser {
     fullName(): string;
     updateProfile(login: string, firstName: string, lastName: string, phone: string, photo: string): void;
     toString(): string;
+    verify(): void;
 }

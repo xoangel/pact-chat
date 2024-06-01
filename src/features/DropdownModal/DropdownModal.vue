@@ -33,4 +33,15 @@ defineExpose({
         flex-direction: column;
     }
 
+        .dropdown-modal__element{
+            background-color: white;
+            transition: background-color .5s ease;
+        }
+
+        .dropdown-modal__element{
+            background-color: #77777720;
+            transition: background-color .5s ease;
+        }
+
+
 </style>
