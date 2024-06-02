@@ -1,0 +1,11 @@
+.transformTop-enter-active {
+    transition: opacity 0.5s ease, transform 0.5s ease;  
+}
+.transformTop-enter-from {
+    transform: translateY(-50px);
+    opacity: 0;
+}
+.transformTop-leave-from {
+    transform: translateY(0);
+    opacity: 1;
+}

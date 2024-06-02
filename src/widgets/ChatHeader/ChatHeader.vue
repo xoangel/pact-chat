@@ -41,7 +41,10 @@ const showMoreActions = () => {if(moreActionsDropdown.value) (moreActionsDropdow
             <div @click="searchField = !searchField" v-if="!searchField" class="chat-header__action-search">
                 <div class="chat-header__action-search__icon action-icon"></div>
             </div>
-            <input v-else class="search-input message-search" v-model="messagesQuery" type="text" placeholder="Поиск..." @input="$emit('searchMessages', messagesQuery)">
+            <div v-else class="message-search__container">
+                <div @click="searchField = !searchField" class="message-search__close"></div>
+                <input class="search-input message-search__input" v-model="messagesQuery" type="text" placeholder="Поиск..." @input="$emit('searchMessages', messagesQuery)">
+            </div>
             <div @click="noRelease" class="chat-header__action-call">
                 <div class="chat-header__action-call__icon action-icon"></div>
             </div>
@@ -57,4 +60,5 @@ const showMoreActions = () => {if(moreActionsDropdown.value) (moreActionsDropdow
 
 <style>
 @import "./ChatHeader.scss";
+@import "./../../assets/css/_searchInput.scss";
 </style>

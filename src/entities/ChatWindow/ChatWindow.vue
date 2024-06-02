@@ -39,18 +39,27 @@ const sendMessage = (message: String) => {
 
 <template>
 <div class="chat-window">
-    <ChatHeader @search-messages="searchMessages" v-if="selectedChat" />
+    <Transition name="transformTop">
+        <ChatHeader @search-messages="searchMessages" v-if="selectedChat" />
+    </Transition>
     <!-- <div class="chat-window__message-list"> -->
-    <transition-group name="transform" tag="div" class="chat-window__message-list">
+    <transition-group name="transformLeft" tag="div" class="chat-window__message-list">
         <MessageCard v-for="message in filteredMessages" :key="message.time.toLocaleString()" :message="message" />
     </transition-group>
     <!-- </div> -->
-    <NoMessages v-if="selectedChat && messageList?.length==0" :name="user?.fullName()" />
-    <ChatInput v-if="selectedChat" @send-message="sendMessage" />
+    <Transition name="fade">
+        <NoMessages v-if="selectedChat && messageList?.length==0" :name="user?.fullName()" />
+    </Transition>
+    <Transition name="transformBottom">
+        <ChatInput v-if="selectedChat" @send-message="sendMessage" />
+    </Transition>
 </div>
 </template>
 
 <style scoped lang="scss">
-@import "./../../assets/css/transform";
+@import "./../../assets/css/fade";
+@import "./../../assets/css/transformBottom";
+@import "./../../assets/css/transformTop";
+@import "./../../assets/css/transformLeft";
 @import "./ChatWindow.scss";
 </style>
