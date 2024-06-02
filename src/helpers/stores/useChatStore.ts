@@ -59,14 +59,6 @@ export const useChatStore = defineStore('chats', {
               item.chat.chat_with.fullName().toLowerCase().includes(state.searchQuery.toLowerCase())
             );
         },
-        // filteredMessages(state) {
-        //     if (!state.searchMessages) {
-        //       return state.chatList;
-        //     }
-        //     return state.chatList.filter(item =>
-        //       item.chat.chat_with.fullName().toLowerCase().includes(state.searchQuery.toLowerCase())
-        //     );
-        // }
     },
     actions: {
         setSearchQuery(query: string) {

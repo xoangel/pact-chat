@@ -9,9 +9,11 @@ import VerificationFeature from '../../features/VerificationFeature/Verification
 const chatStore = useChatStore();
 const selectedUser = computed(()=>chatStore.selectedChat);
 let searchField = ref(false);
+const moreActionsDropdown = ref(null);
+let messagesQuery = ref('');
 
 const noRelease = ()=>alert("В ближайшем обновлении мы это сделаем!");
-const moreActionsDropdown = ref(null);
+
 
 const showMoreActions = () => {if(moreActionsDropdown.value) (moreActionsDropdown.value as any).showDropdown()}
 
@@ -39,7 +41,7 @@ const showMoreActions = () => {if(moreActionsDropdown.value) (moreActionsDropdow
             <div @click="searchField = !searchField" v-if="!searchField" class="chat-header__action-search">
                 <div class="chat-header__action-search__icon action-icon"></div>
             </div>
-            <!-- <input v-else class="search-input message-search" v-model="query" type="text" placeholder="Поиск..." @input="updateSearchQuery"> -->
+            <input v-else class="search-input message-search" v-model="messagesQuery" type="text" placeholder="Поиск..." @input="$emit('searchMessages', messagesQuery)">
             <div @click="noRelease" class="chat-header__action-call">
                 <div class="chat-header__action-call__icon action-icon"></div>
             </div>
