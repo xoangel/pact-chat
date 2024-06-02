@@ -16,7 +16,6 @@ type MessageChat = {
 
 function selectChat(chat: MessageChat){
     chatStore.selectedChat = chat.chat;
-    console.log(chatStore.selectedChat)
 }
 </script>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { useChatStore } from '../../helpers/stores/useChatStore';
 import IChat from '../../helpers/types/typeChat';
 import IMessage from '../../helpers/types/typeMessage';
@@ -32,8 +32,8 @@ import UnreadMessages from './UI/UnreadMessages.vue';
     const verified = computed(()=>chatWith.verified);
     
     let lastMessage = computed(()=>chatStore.getLastMessage(props.chat.chat.id));
-    let lastMessageTime = ref(lastMessage.value?.time);
-    let lastMessageText = ref(lastMessage.value?.text);
+    let lastMessageTime = computed(()=>lastMessage.value?.time);
+    let lastMessageText = computed(()=>lastMessage.value?.text);
 
     const lastMessageTimeString = computed(()=>{
         const now = new Date();
@@ -41,7 +41,7 @@ import UnreadMessages from './UI/UnreadMessages.vue';
             return lastMessageTime.value.getDay() == now.getDay() &&
             lastMessageTime.value.getMonth() == now.getMonth() &&
             lastMessageTime.value.getMonth() == now.getMonth() ?
-            `${lastMessageTime.value?.getHours() < 10 ? '0'+lastMessageTime.value?.getHours(): lastMessageTime.value?.getHours()} : ${lastMessageTime.value?.getMinutes() < 10 ? '0'+lastMessageTime.value?.getMinutes(): lastMessageTime.value?.getMinutes()}` :
+            `${lastMessageTime.value?.getHours() < 10 ? '0'+lastMessageTime.value?.getHours(): lastMessageTime.value?.getHours()}:${lastMessageTime.value?.getMinutes() < 10 ? '0'+lastMessageTime.value?.getMinutes(): lastMessageTime.value?.getMinutes()}` :
             days[lastMessageTime.value.getDay()];
         }
     })

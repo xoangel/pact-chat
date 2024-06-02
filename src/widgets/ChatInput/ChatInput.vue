@@ -19,8 +19,8 @@ const addEmoji = (emoji: any) => {
             </Transition>
             <div @click="showEmojiPicker = !showEmojiPicker" class="emoji-picker__icon"></div>
         </div>
-        <input v-model="inputMessage" placeholder="Напишите сообщение" class="message-input-element" type="text">
-        <button @click="$emit('send-message', inputMessage)" class="send-message"></button>
+        <input v-model="inputMessage" @keyup.enter="$emit('send-message', inputMessage), inputMessage=''" placeholder="Напишите сообщение" class="message-input-element" type="text">
+        <button @click="$emit('send-message', inputMessage), inputMessage=''" class="send-message"></button>
     </div>
 </template>
 

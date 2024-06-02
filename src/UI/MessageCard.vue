@@ -5,24 +5,23 @@ const props = defineProps<{
     message: IMessage
 }>()
 
-const time = `${props.message.time.getHours() < 10 ? '0'+props.message.time.getHours() : props.message.time.getHours()} : ${props.message.time.getMinutes() < 10 ? '0'+props.message.time.getMinutes() : props.message.time.getMinutes()}`;
+const time = `${props.message.time.getHours() < 10 ? '0'+props.message.time.getHours() : props.message.time.getHours()}:${props.message.time.getMinutes() < 10 ? '0'+props.message.time.getMinutes() : props.message.time.getMinutes()}`;
 
 </script>
 
 <template>
 <div class="message-line">
-    <div class="message-line__message" :style="`background-color: ${props.message.incoming? 'white' : '#78E378'}; margin: ${props.message.incoming? '0 0 0 auto' : '0 0 auto 0'}`">
+    <div class="message-line__message" :style="`background-color: ${!props.message.incoming? 'white' : '#78E378'}; margin: ${!props.message.incoming? '0 0 0 auto' : '0 0 auto 0'}`">
         <p class="message__text">{{ props.message.text }}</p>
         <div class="message__data">
-            <div class="message__data__time" :style="`color: ${props.message.incoming? 'black' : 'white'}`">{{ time }}</div>
-            <img src="/public/chat/check.svg" :style="`${props.message.incoming ? {} : 'filter: invert(1)'}`" alt="" class="message__data__check">
+            <div class="message__data__time" :style="`color: ${!props.message.incoming? 'black' : 'white'}`">{{ time }}</div>
+            <img src="/chat/check.svg" :style="`${!props.message.incoming ? {} : 'filter: invert(1)'}`" alt="" class="message__data__check">
         </div>
     </div>
 </div>
 </template>
 
 <style scoped lang="scss">
-
     .message-line{
         display: flex;
     }
