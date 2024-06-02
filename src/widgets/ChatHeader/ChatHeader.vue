@@ -59,6 +59,6 @@ const showMoreActions = () => {if(moreActionsDropdown.value) (moreActionsDropdow
 </template>
 
 <style>
-@import "./ChatHeader.scss";
 @import "./../../assets/css/_searchInput.scss";
+@import "./ChatHeader.scss";
 </style>

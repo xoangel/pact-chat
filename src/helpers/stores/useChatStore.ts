@@ -59,6 +59,23 @@ export const useChatStore = defineStore('chats', {
               item.chat.chat_with.fullName().toLowerCase().includes(state.searchQuery.toLowerCase())
             );
         },
+        getUnreadMessagesCount: (state) => {
+            return (id: number) => {
+                const messages = state.chatList.find((chat: chatWithMessages)=>chat.chat.id === id)?.messageList;
+                console.log(id);
+                if(messages && state.selectedChat?.id !== id){
+                    return messages.filter(message=>!message.seen).length
+                } else return 0;
+            }
+        },
+        readAllMessages: (state) => {
+            return (id: number) => {
+                const messages = state.chatList.find((chat: chatWithMessages)=>chat.chat.id === id)?.messageList;
+                if(messages){
+                    messages.forEach(message=>message.seen = true);
+                }
+            }
+        }
     },
     actions: {
         setSearchQuery(query: string) {

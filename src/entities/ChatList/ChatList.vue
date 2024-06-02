@@ -16,6 +16,7 @@ type MessageChat = {
 
 function selectChat(chat: MessageChat){
     chatStore.selectedChat = chat.chat;
+    chatStore.readAllMessages(chatStore.selectedChat.id)
 }
 </script>
 

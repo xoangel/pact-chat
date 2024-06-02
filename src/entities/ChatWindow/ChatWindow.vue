@@ -30,7 +30,7 @@ const searchMessages = (newQuery: string) => {
 const sendMessage = (message: String) => {
     if(chatStore.selectedChat && message){
         const chat = chatStore.getChatById(chatStore.selectedChat.id);
-        chat?.messageList.push(new Message(message, chatStore.selectedChat.id, sentIncoming.value));
+        chat?.messageList.push(new Message(message, chatStore.selectedChat.id, sentIncoming.value, true));
         sentIncoming.value = !sentIncoming.value;
     }
 }

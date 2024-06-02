@@ -7,10 +7,12 @@ export default class Message implements IMessage {
     private _incoming: Boolean;
     private _seen: Boolean = false;
 
-    constructor(text: String, chatID: Number, incoming: Boolean) {
+    constructor(text: String, chatID: Number, incoming: Boolean, seen?: Boolean) {
         this._text = text;
-        this._chatID = chatID
-        this._incoming = incoming
+        this._chatID = chatID;
+        this._incoming = incoming;
+        if (!incoming) this._seen = true;
+        if (seen) this._seen = seen;
     }
 
     get text(): String{
@@ -30,6 +32,10 @@ export default class Message implements IMessage {
 
     get incoming(){
         return this._incoming
+    }
+
+    set seen(value: Boolean){
+        this._seen = value;
     }
 
     sawMessage(){
