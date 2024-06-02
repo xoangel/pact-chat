@@ -12,11 +12,13 @@ const updateSearchQuery = () => {
 
 <template>
     <div class="chat-search-bar">
-        <div class="chat-search-bar__collapse">
+        <div @click="$emit('collapseMenu')" class="chat-search-bar__collapse">
             <img src="/chat/collapse.svg" alt="">
         </div>
         <div class="chat-search-bar__search">
-            <input class="search-input" v-model="query" type="text" placeholder="Поиск..." @input="updateSearchQuery">
+            <div class="search-input__wrapper">
+                <input class="search-input" v-model="query" type="text" placeholder="Поиск..." @input="updateSearchQuery">
+            </div>
         </div>
     </div>
 </template>

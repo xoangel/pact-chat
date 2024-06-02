@@ -12,8 +12,9 @@ import UnreadMessages from './UI/UnreadMessages.vue';
     const props = defineProps<{
         chat: {
             chat: IChat,
-            messageList: IMessage[]
+            messageList: IMessage[],
         }
+        collapsed: Boolean
     }>();
 
     const days = [
@@ -53,6 +54,9 @@ import UnreadMessages from './UI/UnreadMessages.vue';
     <div class="chat-component">
         <div class="chat-component__avatar-container">
             <AvatarImage :user-avatar="photo"/>
+            <Transition name="fade">
+                <UnreadMessages v-if="unreadMessagesCount && props.collapsed" :count="unreadMessagesCount"/>
+            </Transition>
         </div>
         <div class="chat-component__content">
             <div class="chat-component__title">
@@ -60,10 +64,10 @@ import UnreadMessages from './UI/UnreadMessages.vue';
                     :user-full-name="name" 
                     :verified="verified"
                 />
-                <span class="last-message-time secondary">{{  lastMessageTimeString }}</span>
+                <span class="last-message-time secondary primary-text">{{  lastMessageTimeString }}</span>
             </div>
             <div class="chat-component__last-message">
-                <p class="chat-component__last-message__text secondary">{{ lastMessage && !lastMessage?.incoming ? "Вы: " : "" }} {{ lastMessageText }} </p>
+                <p class="chat-component__last-message__text secondary primary-text">{{ lastMessage && !lastMessage?.incoming ? "Вы: " : "" }} {{ lastMessageText }} </p>
                 <UnreadMessages v-if="unreadMessagesCount" :count="unreadMessagesCount"/>
             </div>
 
@@ -72,5 +76,6 @@ import UnreadMessages from './UI/UnreadMessages.vue';
 </template>
 
 <style scoped lang="scss">
+@import "./../../assets/css/fade";
 @import "./ChatComponent.scss";
 </style>

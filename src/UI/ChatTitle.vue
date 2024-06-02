@@ -9,7 +9,7 @@ defineProps({
 
 <template>
     <div class="chat-title-container">
-        <h2 class="chat-title-container__title">{{ userFullName }}</h2>
+        <p class="chat-title-container__title">{{ userFullName }}</p>
         <img v-if="verified" src="/user/verified.svg" class="chat-title-container__verification" alt="">
     </div>
 </template>
@@ -18,5 +18,13 @@ defineProps({
     .chat-title-container{
         display: flex;
         gap: 8px;
+    }
+
+    .chat-title-container__title{
+        font-size: 16px;
+        font-weight: 600;
+        text-wrap: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 </style>

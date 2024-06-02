@@ -9,6 +9,14 @@
 .chat-search-bar{
     &__collapse{
         padding: 12px 12px 12px 26px;
+        cursor: pointer;
+        transform: scale(1);
+        transition: transform .5s ease;
+    }
+
+    &__collapse:hover{
+        transform: scale(.9);
+        transition: transform .5s ease;
     }
 
     &__search{

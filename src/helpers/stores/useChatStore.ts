@@ -62,7 +62,6 @@ export const useChatStore = defineStore('chats', {
         getUnreadMessagesCount: (state) => {
             return (id: number) => {
                 const messages = state.chatList.find((chat: chatWithMessages)=>chat.chat.id === id)?.messageList;
-                console.log(id);
                 if(messages && state.selectedChat?.id !== id){
                     return messages.filter(message=>!message.seen).length
                 } else return 0;

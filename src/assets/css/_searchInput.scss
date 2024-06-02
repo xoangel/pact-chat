@@ -12,13 +12,17 @@
     outline: none;
 }
 
-.search-input::before {
+.search-input__wrapper{
+    position: relative;
+}
+
+.search-input__wrapper::before {
     content: "";
     width: 24px;
     aspect-ratio: 1;
     position: absolute;
     left: 12px;
-    top: 50%; /* Центрирование по вертикали */
-    transform: translateY(-50%); /* Центрирование по вертикали */
+    top: 50%;
+    transform: translateY(-50%); 
     background: center / cover no-repeat url(/chat/search.svg);
 }

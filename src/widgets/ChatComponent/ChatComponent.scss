@@ -19,6 +19,15 @@
 .chat-component{
     &__avatar-container{
         padding: 12px 16px;
+        position: relative;
+    }
+
+    &__avatar-container{
+        .unread-messages{
+            position: absolute;
+            right: 16px;
+            bottom: 8px;
+        }
     }
 
     &__title{

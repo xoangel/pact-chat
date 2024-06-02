@@ -38,13 +38,17 @@ const showMoreActions = () => {if(moreActionsDropdown.value) (moreActionsDropdow
             </div>
         </div>
         <div class="chat-header__actions">
+        <Transition name="transformLeft">
             <div @click="searchField = !searchField" v-if="!searchField" class="chat-header__action-search">
                 <div class="chat-header__action-search__icon action-icon"></div>
             </div>
-            <div v-else class="message-search__container">
-                <div @click="searchField = !searchField" class="message-search__close"></div>
-                <input class="search-input message-search__input" v-model="messagesQuery" type="text" placeholder="Поиск..." @input="$emit('searchMessages', messagesQuery)">
-            </div>
+                <div v-else class="message-search__container">
+                    <div @click="searchField = !searchField" class="message-search__close"></div>
+                    <div class="search-input__wrapper">
+                        <input class="search-input message-search__input" v-model="messagesQuery" type="text" placeholder="Поиск..." @input="$emit('searchMessages', messagesQuery)">
+                    </div>
+                </div>
+            </Transition>
             <div @click="noRelease" class="chat-header__action-call">
                 <div class="chat-header__action-call__icon action-icon"></div>
             </div>
@@ -59,6 +63,7 @@ const showMoreActions = () => {if(moreActionsDropdown.value) (moreActionsDropdow
 </template>
 
 <style>
+@import "./../../assets/css/_transformLeft.scss";
 @import "./../../assets/css/_searchInput.scss";
 @import "./ChatHeader.scss";
 </style>
