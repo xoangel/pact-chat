@@ -12,6 +12,24 @@ let searchField = ref(false);
 const moreActionsDropdown = ref(null);
 let messagesQuery = ref('');
 
+const lastSeen = computed(()=>{
+    const ls = chatStore.selectedChat?.chat_with.lastSeen;
+    if(ls){
+        const now = new Date();
+
+        const lsDay = ls.getDate();
+        const lsMonth = ls.getMonth();
+        const lsYear = ls.getFullYear();
+        const lsHours = ls.getHours();
+
+        console.log(ls, lsDay)
+
+        if(now.getFullYear() === lsYear && now.getMonth() == lsMonth && now.getDate() == lsDay && now.getHours() == lsHours) return 'Был(a) в сети несколько минут назад';
+        if(now.getFullYear() === lsYear && now.getMonth() == lsMonth && now.getDate() - lsDay == 1) return 'Был(a) в сети вчера'; else 
+        return `Был(a) в сети ${lsDay < 10 ? '0'+ lsDay : lsDay}.${lsMonth < 10 ? '0'+ (lsMonth+1) : (lsMonth + 1)}.${lsYear}`;
+    } else return 'Был(a) в сети недавно';
+})
+
 const noRelease = ()=>alert("В ближайшем обновлении мы это сделаем!");
 
 
@@ -32,7 +50,7 @@ const showMoreActions = () => {if(moreActionsDropdown.value) (moreActionsDropdow
                         :verified="selectedUser?.chat_with.verified || false"
                     />
                     <p class="chat-haeder__last-seen secondary">
-                        Был в сети 5 минут назад
+                        {{ lastSeen }}
                     </p>
                 </div>
             </div>

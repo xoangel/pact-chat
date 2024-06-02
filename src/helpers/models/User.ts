@@ -10,14 +10,16 @@ export default class User implements IUser {
     private _phone: string;
     private _photo: string = "";
     private _verified: boolean = false;
+    private _lastSeen: Date = new Date();
 
-    constructor(login: string, firstName: string, lastName: string, phone: string, photo?: string) {
+    constructor(login: string, firstName: string, lastName: string, phone: string, photo?: string, lastSeen?: Date) {
         this._id = User.generateId();
         this._login = login;
         this._firstName = firstName;
         this._lastName = lastName;
         this._phone = phone;
         if(photo) this._photo = photo;
+        if(lastSeen) this._lastSeen = lastSeen;
     }
 
     private static generateId(): number {
@@ -52,6 +54,10 @@ export default class User implements IUser {
         return this._verified;
     }
 
+    get lastSeen(): Date{
+        return this._lastSeen;
+    }
+
     set login(value: string) {
         this._login = value;
     }
@@ -70,6 +76,10 @@ export default class User implements IUser {
 
     set photo(value: string) {
         this._photo = value;
+    }
+
+    set lastSeen(date: Date){
+        this._lastSeen = date;
     }
 
     fullName(): string {
