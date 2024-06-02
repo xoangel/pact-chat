@@ -4,6 +4,7 @@ import { useChatStore } from '../../helpers/stores/useChatStore';
 import NoMessages from "./UI/NoMessages.vue";
 import Message from '../../UI/Message.vue';
 import ChatHeader from '../../widgets/ChatHeader/ChatHeader.vue';
+import ChatInput from '../../widgets/ChatInput/ChatInput.vue';
 
 const chatStore = useChatStore();
 const selectedChat = computed(()=>chatStore.selectedChat);
@@ -33,6 +34,7 @@ const searchMessages = (newQuery: string) => {
         <Message v-for="message in filteredMessages" :key="message.time.toLocaleString()" :message="message" />
     </div>
     <NoMessages v-if="selectedChat && messageList?.length==0" :name="user?.fullName()" />
+    <ChatInput />
 </div>
 </template>
 
