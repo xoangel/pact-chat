@@ -72,3 +72,7 @@
         cursor: pointer;
     }
 }
+
+body:has(.collapsed) .emoji_picker{
+    left: 80px;
+}
