@@ -44,7 +44,7 @@ const sendMessage = (message: String) => {
     </Transition>
     <!-- <div class="chat-window__message-list"> -->
     <transition-group name="transformLeft" tag="div" class="chat-window__message-list">
-        <MessageCard v-for="message in filteredMessages" :key="message.time.toLocaleString()" :message="message" />
+        <MessageCard v-for="message in filteredMessages" :key="message.time.getTime()" :message="message" />
     </transition-group>
     <!-- </div> -->
     <Transition name="fade">

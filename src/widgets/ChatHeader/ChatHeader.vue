@@ -56,7 +56,7 @@ const showMoreActions = () => {if(moreActionsDropdown.value) (moreActionsDropdow
             </div>
         </div>
         <div class="chat-header__actions">
-        <Transition name="transformLeft">
+        <Transition name="fadeHalf">
             <div @click="searchField = !searchField" v-if="!searchField" class="chat-header__action-search">
                 <div class="chat-header__action-search__icon action-icon"></div>
             </div>
@@ -82,6 +82,7 @@ const showMoreActions = () => {if(moreActionsDropdown.value) (moreActionsDropdow
 
 <style>
 @import "./../../assets/css/_transformLeft.scss";
+@import "./../../assets/css/_fadeHalf.scss";
 @import "./../../assets/css/_searchInput.scss";
 @import "./ChatHeader.scss";
 </style>
